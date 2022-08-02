@@ -33,8 +33,13 @@ async function copyText() {
 
 async function copyJpeg() {
   const response = await fetch(jpegImg.src)
-  const blob = await response.blob();
-  const data = [new ClipboardItem({ [blob.type]: blob })];
+  const jpegBlob = await response.blob();
+  const pngBlob = await convertJpegToPng({
+    jpegBlob,
+    naturalWidth: jpegImg.naturalWidth,
+    naturalHeight: jpegImg.naturalHeight
+  });
+  const data = [new ClipboardItem({ [pngBlob.type]: pngBlob })];
   await clipboard.write(data);
   await updateHistory();
 }
@@ -45,6 +50,32 @@ async function copyPng() {
   const data = [new ClipboardItem({ [blob.type]: blob })];
   await clipboard.write(data);
   await updateHistory();
+}
+
+function convertJpegToPng({
+  jpegBlob,
+  naturalWidth,
+  naturalHeight
+}) {
+  return new Promise((resolve, reject) => {
+    const canvas = document.createElement('canvas')
+    const context = canvas.getContext('2d')
+    canvas.width = naturalWidth
+    canvas.height = naturalHeight
+    const img = new Image();
+    img.onload = function () {
+      context.drawImage(img, 0, 0, naturalWidth, naturalHeight)
+      canvas.toBlob(
+        function (blob) {
+          if (blob) resolve(blob)
+          else reject('Cannot get blob from image element')
+        },
+        'image/png',
+        1,
+      )
+    }
+    img.src = URL.createObjectURL(jpegBlob);
+  })
 }
 
 async function updateHistory() {
