@@ -1,0 +1,39 @@
+html {
+  font-size: 20px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 1rem;
+}
+
+body {
+  padding: 20px;
+}
+
+.copy-box {
+  width: 50vw;
+  margin: 20px 0;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  border: 2px solid #f0f2f7;
+}
+
+.copy-box button{
+  padding: 8px;
+}
+
+.copy-text textarea {
+  padding: 8px;
+  width: 40vw;
+}
+
+img {
+  width: 40vw;
+  opacity: 0.1;
+}
