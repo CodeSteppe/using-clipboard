@@ -1,5 +1,6 @@
 html {
   font-size: 20px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 * {
@@ -11,11 +12,13 @@ html {
 
 body {
   padding: 20px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .copy-box {
   width: 50vw;
-  margin: 20px 0;
+  margin-bottom: 20px;
   padding: 20px;
   display: flex;
   justify-content: space-between;
@@ -24,7 +27,7 @@ body {
   border: 2px solid #f0f2f7;
 }
 
-.copy-box button{
+.copy-box button {
   padding: 8px;
 }
 
@@ -36,4 +39,31 @@ body {
 img {
   width: 40vw;
   opacity: 0.1;
+}
+
+.clipboard-history {
+  width: 40vw;
+}
+
+.clipboard-history::before {
+  content: 'Clipboard History';
+  font-size: 2rem;
+}
+
+.clipboard-item {
+  margin-top: 20px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #e0e2e7;
+}
+
+.item-type::before {
+  content: 'Type: ';
+}
+
+.item-content{
+  margin-top: 10px;
+}
+
+.item-content::before {
+  content: 'Content: ';
 }

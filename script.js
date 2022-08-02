@@ -11,6 +11,9 @@ const copyPngBox = document.querySelector('.copy-png');
 const pngImg = copyPngBox.querySelector('img');
 const copyPngButton = copyPngBox.querySelector('button');
 
+const clipboardHistory = document.querySelector('.clipboard-history');
+const clipboardItemTemplate = document.querySelector('#clipboard-item-template');
+
 // const
 const { clipboard } = navigator;
 
@@ -18,10 +21,12 @@ const { clipboard } = navigator;
 copyTextButton.addEventListener('click', copyText);
 copyJpegButton.addEventListener('click', copyJpeg);
 copyPngButton.addEventListener('click', copyPng);
+// pngImg.addEventListener('dblclick', copyPng);
 
 // functions
 async function copyText() {
   const text = textArea.value;
+  if (!text) return;
   await clipboard.writeText(text);
   await updateHistory();
 }
@@ -50,10 +55,24 @@ async function updateHistory() {
     for (const type of clipboardItem.types) {
       const blob = await clipboardItem.getType(type);
       console.log('blob', blob)
+      const itemDOM = clipboardItemTemplate.content.firstElementChild.cloneNode(true);
+      const typeDOM = itemDOM.querySelector('.item-type');
+      const contentDOM = itemDOM.querySelector('.item-content');
       // text item
       if (type === 'text/plain') {
-        console.log('text', await blob.text());
+        typeDOM.textContent = 'Text';
+        contentDOM.textContent = await blob.text();
+        // console.log('text', await blob.text());
       }
+      // png item
+      if (type === 'image/png') {
+        // console.log('image', await blob.text());
+        typeDOM.textContent = 'PNG Image';
+        const img = document.createElement('img');
+        img.src = URL.createObjectURL(blob);
+        contentDOM.append(img);
+      }
+      clipboardHistory.prepend(itemDOM);
     }
   }
 }
