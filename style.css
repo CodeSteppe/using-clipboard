@@ -1,6 +1,6 @@
 html {
   font-size: 20px;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 * {
@@ -16,54 +16,54 @@ body {
   justify-content: space-between;
 }
 
+.copy-types::before {
+  content: "Copy types";
+  font-size: 2rem;
+}
+
 .copy-box {
-  width: 50vw;
-  margin-bottom: 20px;
+  width: 44vw;
+  margin-top: 20px;
   padding: 20px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 8px;
-  border: 2px solid #f0f2f7;
+  flex-direction: column;
+  gap: 10px;
+  background-color: #b1daff;
+}
+
+.copy-box * {
+  width: 100%;
 }
 
 .copy-box button {
-  padding: 8px;
+  padding: 6px;
+  cursor: pointer;
 }
 
 .copy-text textarea {
   padding: 8px;
-  width: 40vw;
 }
 
 img {
-  width: 40vw;
-  opacity: 0.1;
+  width: 100%;
 }
 
 .clipboard-history {
-  width: 40vw;
+  width: 44vw;
 }
 
 .clipboard-history::before {
-  content: 'Clipboard History';
+  content: "Clipboard History";
   font-size: 2rem;
 }
 
 .clipboard-item {
   margin-top: 20px;
   padding-bottom: 8px;
-  border-bottom: 1px solid #e0e2e7;
+  background-color: rgb(255, 213, 220);
+  padding: 20px;
 }
 
-.item-type::before {
-  content: 'Type: ';
-}
-
-.item-content{
+.item-content {
   margin-top: 10px;
-}
-
-.item-content::before {
-  content: 'Content: ';
 }

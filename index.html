@@ -11,28 +11,29 @@
 
 <body>
 
-  <div>
+  <div class="copy-types">
     <div class="copy-box copy-text">
-      <textarea cols="30" rows="5"></textarea>
+      <h2>Type: text</h2>
+      <textarea rows="10"></textarea>
       <button>Copy</button>
     </div>
     <div class="copy-box copy-jpeg">
+      <h2>Type: JPEG image</h2>
       <img src="./images/yellow grass.jpg" />
       <button>Copy</button>
     </div>
     <div class="copy-box copy-png">
+      <h2>Type: PNG image</h2>
       <img src="./images/green grass.png" />
       <button>Copy</button>
     </div>
   </div>
 
-  <div class="clipboard-history">
-
-  </div>
+  <div class="clipboard-history"></div>
 
   <template id="clipboard-item-template">
     <div class="clipboard-item">
-      <div class="item-type"></div>
+      <h2 class="item-type"></h2>
       <div class="item-content"></div>
     </div>
   </template>
