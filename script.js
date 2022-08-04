@@ -3,13 +3,17 @@ const copyTextBox = document.querySelector('.copy-text');
 const textArea = copyTextBox.querySelector('textarea');
 const copyTextButton = copyTextBox.querySelector('button');
 
-const copyJpegBox = document.querySelector('.copy-jpeg');
-const jpegImg = copyJpegBox.querySelector('img');
-const copyJpegButton = copyJpegBox.querySelector('button');
+const copyHTMLBox = document.querySelector('.copy-html');
+const htmlSample = copyHTMLBox.querySelector('p');
+const copyHTMLButton = copyHTMLBox.querySelector('button');
 
 const copyPngBox = document.querySelector('.copy-png');
 const pngImg = copyPngBox.querySelector('img');
 const copyPngButton = copyPngBox.querySelector('button');
+
+const copyJpegBox = document.querySelector('.copy-jpeg');
+const jpegImg = copyJpegBox.querySelector('img');
+const copyJpegButton = copyJpegBox.querySelector('button');
 
 const clipboardHistory = document.querySelector('.clipboard-history');
 const clipboardItemTemplate = document.querySelector('#clipboard-item-template');
@@ -19,14 +23,23 @@ const { clipboard } = navigator;
 
 // event listeners
 copyTextButton.addEventListener('click', copyText);
-copyJpegButton.addEventListener('click', copyJpeg);
+copyHTMLButton.addEventListener('click', copyHTML);
 copyPngButton.addEventListener('click', copyPng);
+copyJpegButton.addEventListener('click', copyJpeg);
 
 // functions
 async function copyText() {
   const text = textArea.value;
   if (!text) return;
   await clipboard.writeText(text);
+  await updateHistory();
+}
+
+async function copyHTML() {
+	const html = htmlSample.innerHTML;
+	const blob = new Blob([html], {type: 'text/html'});
+  const data = [new ClipboardItem({ [blob.type]: blob })];
+  await clipboard.write(data);
   await updateHistory();
 }
 
@@ -87,12 +100,17 @@ async function updateHistory() {
       console.log('blob', blob)
       const itemDOM = clipboardItemTemplate.content.firstElementChild.cloneNode(true);
       const typeDOM = itemDOM.querySelector('.item-type');
-      const contentDOM = itemDOM.querySelector('.clipboard-item-content');
+      const contentDOM = itemDOM.querySelector('.item-content');
       // text item
       if (type === 'text/plain') {
         typeDOM.textContent = 'Text';
         contentDOM.textContent = await blob.text();
         // console.log('text', await blob.text());
+      }
+      if (type === 'text/html') {
+        typeDOM.textContent = 'HTML';
+        contentDOM.innerHTML = await blob.text();
+        console.log('text', await blob.text());
       }
       // png item
       if (type === 'image/png') {
