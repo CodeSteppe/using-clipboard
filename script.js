@@ -21,13 +21,20 @@ const { clipboard } = navigator;
 copyTextButton.addEventListener('click', copyText);
 copyJpegButton.addEventListener('click', copyJpeg);
 copyPngButton.addEventListener('click', copyPng);
-// pngImg.addEventListener('dblclick', copyPng);
 
 // functions
 async function copyText() {
   const text = textArea.value;
   if (!text) return;
   await clipboard.writeText(text);
+  await updateHistory();
+}
+
+async function copyPng() {
+  const response = await fetch(pngImg.src)
+  const blob = await response.blob();
+  const data = [new ClipboardItem({ [blob.type]: blob })];
+  await clipboard.write(data);
   await updateHistory();
 }
 
@@ -40,14 +47,6 @@ async function copyJpeg() {
     naturalHeight: jpegImg.naturalHeight
   });
   const data = [new ClipboardItem({ [pngBlob.type]: pngBlob })];
-  await clipboard.write(data);
-  await updateHistory();
-}
-
-async function copyPng() {
-  const response = await fetch(pngImg.src)
-  const blob = await response.blob();
-  const data = [new ClipboardItem({ [blob.type]: blob })];
   await clipboard.write(data);
   await updateHistory();
 }
@@ -70,8 +69,8 @@ function convertJpegToPng({
           if (blob) resolve(blob)
           else reject('Cannot get blob from image element')
         },
-        'image/png',
-        1,
+        'image/png', // image format is png
+        1, // image quality is the best
       )
     }
     img.src = URL.createObjectURL(jpegBlob);
@@ -88,7 +87,7 @@ async function updateHistory() {
       console.log('blob', blob)
       const itemDOM = clipboardItemTemplate.content.firstElementChild.cloneNode(true);
       const typeDOM = itemDOM.querySelector('.item-type');
-      const contentDOM = itemDOM.querySelector('.item-content');
+      const contentDOM = itemDOM.querySelector('.clipboard-item-content');
       // text item
       if (type === 'text/plain') {
         typeDOM.textContent = 'Text';

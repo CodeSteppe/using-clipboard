@@ -16,8 +16,14 @@ body {
   justify-content: space-between;
 }
 
+img {
+  width: 100%;
+}
+
+/* copy types */
+
 .copy-types::before {
-  content: "Copy types";
+  content: "Copy Types";
   font-size: 2rem;
 }
 
@@ -28,7 +34,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  background-color: #b1daff;
+  background-color: #97ceff;
 }
 
 .copy-box * {
@@ -44,9 +50,7 @@ body {
   padding: 8px;
 }
 
-img {
-  width: 100%;
-}
+/* clipboard history */
 
 .clipboard-history {
   width: 44vw;
@@ -60,10 +64,10 @@ img {
 .clipboard-item {
   margin-top: 20px;
   padding-bottom: 8px;
-  background-color: rgb(255, 213, 220);
+  background-color: #fbd54d;
   padding: 20px;
 }
 
-.item-content {
+.clipboard-item-content {
   margin-top: 10px;
 }
