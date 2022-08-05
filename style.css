@@ -13,7 +13,8 @@ html {
 body {
   padding: 20px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 4vw;
 }
 
 img {
@@ -28,7 +29,7 @@ img {
 }
 
 .copy-box {
-  width: 44vw;
+  width: 45vw;
   margin-top: 20px;
   padding: 20px;
   display: flex;
@@ -53,7 +54,7 @@ img {
 /* clipboard history */
 
 .clipboard-history {
-  width: 44vw;
+  width: 45vw;
 }
 
 .clipboard-history::before {
