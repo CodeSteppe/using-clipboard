@@ -34,7 +34,7 @@ img {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  background-color: #97ceff;
+  background-color: #abd8ff;
 }
 
 .copy-box * {

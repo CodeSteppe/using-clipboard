@@ -1,20 +1,21 @@
 // DOM
+// Text
 const copyTextBox = document.querySelector('.copy-text');
 const textArea = copyTextBox.querySelector('textarea');
 const copyTextButton = copyTextBox.querySelector('button');
-
+// HTML
 const copyHTMLBox = document.querySelector('.copy-html');
 const htmlSample = copyHTMLBox.querySelector('p');
 const copyHTMLButton = copyHTMLBox.querySelector('button');
-
+// PNG
 const copyPngBox = document.querySelector('.copy-png');
 const pngImg = copyPngBox.querySelector('img');
 const copyPngButton = copyPngBox.querySelector('button');
-
+// JPEG
 const copyJpegBox = document.querySelector('.copy-jpeg');
 const jpegImg = copyJpegBox.querySelector('img');
 const copyJpegButton = copyJpegBox.querySelector('button');
-
+// History
 const clipboardHistory = document.querySelector('.clipboard-history');
 const clipboardItemTemplate = document.querySelector('#clipboard-item-template');
 
