@@ -17,10 +17,6 @@ body {
   gap: 4vw;
 }
 
-img {
-  width: 100%;
-}
-
 h2 {
   font-size: 1.5rem;
 }
@@ -42,21 +38,16 @@ h2 {
   background-color: #abd8ff;
 }
 
-.copy-box * {
-  width: 100%;
-}
-
 .copy-box button {
   padding: 6px;
   cursor: pointer;
 }
 
-.copy-text textarea {
+.copy-box textarea {
   padding: 8px;
 }
 
 /* clipboard history */
-
 .clipboard-history {
   width: 45vw;
 }
@@ -68,11 +59,14 @@ h2 {
 
 .clipboard-item {
   margin-top: 20px;
-  padding-bottom: 8px;
-  background-color: #fbd54d;
   padding: 20px;
+  background-color: #fbd54d;
 }
 
-.item-content {
+.clipboard-item img {
+  width: 100%;
+}
+
+.clipboard-item .item-content {
   margin-top: 10px;
 }
